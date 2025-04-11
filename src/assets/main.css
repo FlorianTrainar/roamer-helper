@@ -1,0 +1,26 @@
+@import './base.css';
+
+*  {
+  box-sizing: border-box;
+}
+
+:root {
+  --header-heigth-: 100px;
+  --background-color-: rgb(211, 146, 25);
+  --backgroune-color2-: rgba(211, 146, 25, 0.458);
+}
+.wrapper {
+  width: 1020px;
+  margin: 0px auto;
+
+  padding: 20px 0;
+}
+main {
+  background-color: var(--backgroune-color2-);
+}
+h1 {
+  font-size: 36px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 15px;
+}
