@@ -6,8 +6,11 @@
 
 :root {
   --header-heigth-: 100px;
-  --background-color-: rgb(211, 146, 25);
-  --backgroune-color2-: rgba(211, 146, 25, 0.458);
+  --background-color-: #87caf3;
+  --background-color2-: #a7d3eeca;
+  --background-color3-: #c2d9e840;
+  --orange-color-: #dc7032;
+  --header-color-: rgba(114, 217, 212, 0.391);
 }
 .wrapper {
   width: 1020px;
@@ -16,11 +19,74 @@
   padding: 20px 0;
 }
 main {
-  background-color: var(--backgroune-color2-);
+  height: 100vh;
+  width: 100%;
+  background-image:
+    radial-gradient(var(--background-color3-), var(--background-color2-)),
+    url(./imgs/Background.jpg);
+  /* background-color: var(--background-color3-); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 5px grey;
+  position: absolute;
+  /* top: var(--header-heigth-); */
+  z-index: 0;
 }
 h1 {
-  font-size: 36px;
+  font-size: 42px;
+  font-weight: bold;
   font-style: italic;
   text-align: center;
   margin-bottom: 15px;
+  color: var(--orange-color-);
+  -webkit-text-stroke: 0.5px black;
+}
+h3 {
+  font-size: 26px;
+  color: var(--orange-color-);
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px black;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.inputZone {
+  display: flex;
+  background-color: white;
+  border: 1px solid black;
+  margin: 2px;
+  font-size: 20px;
+}
+input {
+  border: none;
+  text-align: right;
+  padding: 0 10px;
+}
+input:focus {
+  outline: none;
+}
+.inputZone > p {
+  padding: 0 10px;
+  border-left: 0.5px dotted black;
+}
+select {
+  /* border: none; */
+  /* width: 42px; */
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  /* background: none; */
+  font-size: 18px;
+  text-align: center;
+  padding: 3px 10px;
 }

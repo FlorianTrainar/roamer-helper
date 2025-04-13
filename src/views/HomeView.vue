@@ -1,83 +1,79 @@
 <script setup>
-import { ref, inject } from 'vue'
-import translate from 'translate'
+import { ref, inject, onBeforeMount } from 'vue'
+import { useRouter, RouterLink } from 'vue-router'
+
 import { countries } from '@/assets/javascript/countries'
 
 const GlobalStore = inject('GlobalStore')
 
-const langage1 = ref('')
-const text1 = ref('')
-const langage2 = ref('')
-const text2 = ref('')
+const router = useRouter()
 
-const handle = async () => {
-  langage1.value = GlobalStore.country1.value.code
-  langage2.value = GlobalStore.country2.value.code
+const country1 = ref('')
+const country2 = ref('')
+const transition = ref('')
 
-  if (text1.value) {
-    const text = await translate(text1.value, { from: langage1.value, to: langage2.value })
-    console.log(text)
-    text2.value = text
-  } else if (text2.value) {
-    const text = await translate(text2.value, { from: langage2.value, to: langage1.value })
-    console.log(text)
-    text1.value = text
+// onBeforeMount(() => {
+//   $cookies.remove('country1')
+//   $cookies.remove('country2')
+// })
+
+const updateCountry = (num) => {
+  if (num === 1) {
+    $cookies.set('country1', country1.value)
+    // GlobalStore.country1.value = country1.value
+  } else if (num === 2) {
+    $cookies.set('country2', country2.value)
   }
 }
-</script>
 
+const start = () => {
+  router.go()
+
+  // router.push({ path: '/translate' })
+}
+</script>
 <template>
   <main>
-    <div class="wrapper">
-      <h1>Translator</h1>
-      <section class="translate">
-        <form @submit.prevent="translate">
-          <div>
-            <div>
-              <textarea name="" id="" cols="60" rows="3" v-model="text1"></textarea>
-            </div>
-            <div>
-              <textarea name="" id="" cols="60" rows="3" v-model="text2"></textarea>
-            </div>
-          </div>
-          <button @:click="handle">Translate</button>
-        </form>
+    <h1>Welcome !</h1>
+
+    <div v-if="!GlobalStore.country1.value && !GlobalStore.country2.value" class="countrySelect">
+      <div>
+        <select id="country1" v-model="country1" @change="updateCountry(1)">
+          <option value="" hidden>Your country</option>
+          <option v-for="countries in countries" :key="countries.country" :value="countries">
+            {{ countries.country }}
+          </option>
+        </select>
+      </div>
+      <button v-if="country1 && country2" @click="start">START</button>
+      <div>
+        <select name="langage2" id="" v-model="country2" @change="updateCountry(2)">
+          <option value="" hidden>Your destination</option>
+          <option v-for="countries in countries" :key="countries.country" :value="countries">
+            {{ countries.country }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div v-if="GlobalStore.country1.value && GlobalStore.country2.value" class="appSelect">
+      <section>
+        <div>
+          <RouterLink :to="{ name: 'translate' }">Translate</RouterLink>
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'currencies' }">Currencies</RouterLink>
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'time' }">Time Zone</RouterLink>
+        </div>
       </section>
     </div>
-    <section class="test">
-      <p>Langue 1 = {{ GlobalStore.country1 }} === {{ langage1 }}</p>
-      <p>text 1 = {{ text1 }}</p>
-      <p>Langue 2 = {{ GlobalStore.country2 }} === {{ langage2 }}</p>
-      <p>text 2 = {{ text2 }}</p>
-      <p>countries = {{ countries }}</p>
-    </section>
   </main>
 </template>
 <style scoped>
-/* textarea {
-  border: none;
-  background: none;
-} */
-form {
+.countrySelect {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-form > div {
-  display: flex;
-  justify-content: space-between;
-}
-/* form > div > div {
-  background-color: white;
-  border: 1px solid black;
-  width: 49%;
-} */
-button {
-  width: 100px;
-  align-self: center;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 20px;
-  background-color: var(--background-color-);
+  gap: 5px;
 }
 </style>

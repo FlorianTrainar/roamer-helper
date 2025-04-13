@@ -1,18 +1,51 @@
 export const countries = [
   {
-    country: 'United Kingdom',
+    country: 'U.S.A',
+    capital: 'Washington D.C',
     langage: 'english',
     code: 'en',
+    currency: { name: 'U.S dollar', code: 'USD', symbol: '$' },
+    time: -4,
+  },
+  {
+    country: 'United Kingdom',
+    capital: 'London',
+    langage: 'english',
+    code: 'en',
+    currency: { name: 'British Pound Sterling', code: 'GBP', symbol: '£' },
+    time: 1,
   },
 
   {
     country: 'France',
+    capital: 'Paris',
     langage: 'français',
     code: 'fr',
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    time: 2,
   },
   {
     country: 'Deutshland',
+    capital: 'Berlin',
     langage: 'Deutsh',
     code: 'de',
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    time: 2,
+  },
+  {
+    country: 'Portugal',
+    capital: 'Lisbon',
+    langage: 'Portuges',
+    code: 'pt',
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    time: 1,
+  },
+  {
+    country: 'Japan',
+    capital: 'Tokyo',
+    langage: 'Japanese',
+    code: 'ja',
+    currency: { name: 'Yen', code: 'JPY', symbol: '¥' },
+    time: 9,
   },
 ]

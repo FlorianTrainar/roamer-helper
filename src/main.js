@@ -6,13 +6,16 @@ import router from './router'
 
 import { ref } from 'vue'
 
+import VueCookies from 'vue-cookies'
+
 const app = createApp(App)
 
 app.use(router)
+app.use(VueCookies)
 
 // Création de la valeur réactive
-const country1 = ref('')
-const country2 = ref('')
+const country1 = ref($cookies.get('country1')) || ref('')
+const country2 = ref($cookies.get('country2')) || ref('')
 
 // Création du 'provider'
 app.provide('GlobalStore', { country1: country1, country2: country2 })
