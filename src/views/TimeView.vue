@@ -19,55 +19,47 @@ const minutes = d.getMinutes()
 const paddedMinutes = String(minutes).padStart(2, '0')
 const utcHour = ref(d.getUTCHours())
 
-// Hours definition
-
-const hourCorrection = (num) => {
-  if (!displaySwitched.value) {
-    if (num > 23) {
-      num = num - 24
-    } else if (num < 0) {
-      num = num + 24
-    }
-    return String(num).padStart(2, '0')
-  } else if (displaySwitched.value) {
-    if (num > 11) {
-      num = num - 12
-    } else if (num > 23) {
-      num = num - 24
-    } else if (num < 0) {
-      num = num - 24
-    }
-    return String(num).padStart(2, '0')
-  }
-
-  return String(num).padStart(2, '0')
-}
-const hour1 = ref(utcHour.value + GlobalStore.country1.value.time)
-const hour1Corrected = ref(hourCorrection(hour1.value))
-
-const hour2 = ref(utcHour.value + GlobalStore.country2.value.time)
-const hour2Corrected = ref(hourCorrection(hour2.value))
-
 // Total definition
 
-const currentTime1 = ref(`${hour1Corrected.value}h${paddedMinutes}`)
-if (displaySwitched.value) {
-  if (hour1.value < 13 && hour1.value !== 0) {
-    currentTime1.value = ref(`${hour1Corrected.value}h${paddedMinutes}AM`)
-  } else {
-    currentTime1.value = ref(`${hour1Corrected.value}h${paddedMinutes}PM`)
+const definitiveTime = ref(null)
+
+const timeSet = (hour) => {
+  if (!displaySwitched.value) {
+    if (hour > 23) {
+      definitiveTime.value = hour - 24
+    } else if (hour < 0) {
+      definitiveTime.value = hour + 24
+    }
+    definitiveTime.value = String(hour).padStart(2, '0')
+
+    return `${definitiveTime.value}h${paddedMinutes}`
+
+    // ---
+  } else if (displaySwitched.value) {
+    if (hour > 24) {
+      definitiveTime.value = String(hour - 24).padStart(2, '0')
+      return `${definitiveTime.value}h${paddedMinutes}AM`
+    }
+
+    if (hour > 12 && hour !== 24) {
+      definitiveTime.value = String(hour - 12).padStart(2, '0')
+      return `${definitiveTime.value}h${paddedMinutes}PM`
+    } else if (hour === 12) {
+      return `12h${paddedMinutes}PM`
+    } else if (hour === 0 || hour === 24) {
+      return `12h${paddedMinutes}AM`
+    }
   }
-}
-const currentTime2 = ref(`${hour2Corrected.value}h${paddedMinutes}`)
-if (displaySwitched.value) {
-  if (hour2.value < 13 && hour2.value !== 0) {
-    currentTime2.value = ref(`${hour2Corrected.value}h${paddedMinutes}AM`)
-  } else {
-    currentTime2.value = ref(`${hour2Corrected.value}h${paddedMinutes}PM`)
-  }
+  definitiveTime.value = String(hour).padStart(2, '0')
+  return `${definitiveTime.value}h${paddedMinutes}AM`
 }
 
-const timeDifference = ref(GlobalStore.country2.value.time - GlobalStore.country1.value.time)
+// --- Time Difference
+
+const timeDifference = ref(
+  Object.values(GlobalStore.country2.value.citiesTime[0]) -
+    Object.values(GlobalStore.country1.value.citiesTime[0]),
+)
 
 // Switch display
 
@@ -86,20 +78,22 @@ const switchDisplay = (boolean) => {
         <h1>Time Zone</h1>
         <section>
           <div v-if="GlobalStore.country1.value">
-            <p>
-              Time in <span>{{ GlobalStore.country1.value.capital }} </span> : {{ currentTime1 }}
-            </p>
             <div v-if="GlobalStore.country1.value.citiesTime">
               <p v-for="cities in GlobalStore.country1.value.citiesTime" :key="cities">
                 Time in <span>{{ Object.keys(cities).join() }} </span> :
-                {{ currentTime1 }}
+                {{ timeSet(parseInt(utcHour) + parseInt(Object.values(cities))) }}
               </p>
             </div>
           </div>
 
-          <p v-if="GlobalStore.country2.value">
-            Time in <span>{{ GlobalStore.country2.value.capital }}</span> : {{ currentTime2 }}
-          </p>
+          <div v-if="GlobalStore.country2.value">
+            <div v-if="GlobalStore.country2.value.citiesTime">
+              <p v-for="cities in GlobalStore.country2.value.citiesTime" :key="cities">
+                Time in <span>{{ Object.keys(cities).join() }} </span> :
+                {{ timeSet(parseInt(utcHour) + parseInt(Object.values(cities))) }}
+              </p>
+            </div>
+          </div>
         </section>
         <section>
           <p v-if="GlobalStore.country1.value && GlobalStore.country2.value">

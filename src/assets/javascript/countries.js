@@ -6,7 +6,6 @@ export const countries = [
     langage: 'English',
     code: 'en',
     currency: { name: 'U.S dollar', code: 'USD', symbol: '$' },
-    time: -4,
     citiesTime: [
       { 'New-York': 0 },
       { Houston: -1 },
@@ -17,13 +16,22 @@ export const countries = [
     ],
   },
   {
+    country: 'Russia',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744724504/rus_wucgmh.svg',
+    capital: 'Moscow',
+    langage: 'Russian',
+    code: 'ru',
+    currency: { name: 'Russian Ruble', code: 'RUB', symbol: '₽' },
+    citiesTime: [{ Moscow: +3 }, { Novosibirsk: +7 }],
+  },
+  {
     country: 'United Kingdom',
     capital: 'London',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/gbr_swnmfv.svg',
     langage: 'English',
     code: 'en',
     currency: { name: 'British Pound Sterling', code: 'GBP', symbol: '£' },
-    time: 1,
+    citiesTime: [{ London: 1 }],
   },
 
   {
@@ -33,7 +41,7 @@ export const countries = [
     langage: 'Français',
     code: 'fr',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
-    time: 2,
+    citiesTime: [{ Paris: 2 }],
   },
   {
     country: 'Deutshland',
@@ -42,7 +50,7 @@ export const countries = [
     langage: 'Deutsch',
     code: 'de',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
-    time: 2,
+    citiesTime: [{ Berlin: 2 }],
   },
   {
     country: 'Portugal',
@@ -51,7 +59,7 @@ export const countries = [
     langage: 'Portuges',
     code: 'pt',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
-    time: 1,
+    citiesTime: [{ Lisbon: 1 }],
   },
   {
     country: 'Japan',
@@ -60,6 +68,6 @@ export const countries = [
     langage: 'Japanese',
     code: 'ja',
     currency: { name: 'Yen', code: 'JPY', symbol: '¥' },
-    time: 9,
+    citiesTime: [{ Tokyo: 9 }],
   },
 ]
