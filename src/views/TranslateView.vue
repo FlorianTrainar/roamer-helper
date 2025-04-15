@@ -10,6 +10,13 @@ const text1 = ref('')
 const langage2 = ref('')
 const text2 = ref('')
 
+if (sessionStorage.getItem('text1')) {
+  text1.value = sessionStorage.getItem('text1')
+}
+if (sessionStorage.getItem('text2')) {
+  text2.value = sessionStorage.getItem('text2')
+}
+
 const handle = async () => {
   langage1.value = GlobalStore.country1.value.code
   langage2.value = GlobalStore.country2.value.code
@@ -24,63 +31,83 @@ const handle = async () => {
     text1.value = text
   }
 }
+const inputRefresh = (num) => {
+  if (num === 1) {
+    text2.value = ''
+    sessionStorage.setItem('text1', text1.value)
+  }
+  if (num === 2) {
+    text1.value = ''
+    sessionStorage.setItem('text2', text2.value)
+  }
+}
 </script>
 
 <template>
   <main>
     <div class="wrapper">
-      <h1>Translator</h1>
-      <section class="translate">
+      <section class="content">
+        <h1>Translator</h1>
+
         <form @submit.prevent="translate">
           <div>
             <div>
-              <textarea name="" id="" cols="60" rows="3" v-model="text1"></textarea>
+              <h2>{{ GlobalStore.country1.value.langage }}</h2>
+              <textarea
+                name=""
+                id=""
+                cols="60"
+                rows="10"
+                v-model="text1"
+                @input="inputRefresh(1)"
+              ></textarea>
             </div>
             <div>
-              <textarea name="" id="" cols="60" rows="3" v-model="text2"></textarea>
+              <h2>{{ GlobalStore.country2.value.langage }}</h2>
+              <textarea
+                name=""
+                id=""
+                cols="60"
+                rows="10"
+                v-model="text2"
+                @input="inputRefresh(2)"
+              ></textarea>
             </div>
           </div>
-          <button @:click="handle">Translate</button>
+          <button class="handleButton" @:click="handle">Translate</button>
         </form>
       </section>
     </div>
-    <section class="test">
+    <!-- <section class="test">
       <p>Langue 1 = {{ GlobalStore.country1 }} === {{ langage1 }}</p>
       <p>text 1 = {{ text1 }}</p>
       <p>Langue 2 = {{ GlobalStore.country2 }} === {{ langage2 }}</p>
       <p>text 2 = {{ text2 }}</p>
       <p>countries = {{ countries }}</p>
-    </section>
+    </section> -->
   </main>
 </template>
 <style scoped>
-/* textarea {
-  border: none;
-  background: none;
-} */
 form {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  /* width: 100vw; */
+  gap: 30px;
 }
 form > div {
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+form > div > div {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
-/* form > div > div {
-  background-color: white;
-  border: 1px solid black;
-  width: 49%;
-} */
-button {
-  width: 100px;
-  align-self: center;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 20px;
-  background-color: var(--background-color-);
+textarea {
+  width: 90%;
+  font-size: 17px;
+  resize: none;
 }
 </style>

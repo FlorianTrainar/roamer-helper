@@ -1,53 +1,60 @@
 @import './base.css';
 
-*  {
+* {
   box-sizing: border-box;
 }
 
 :root {
   --header-heigth-: 100px;
-  --background-color-: #87caf3;
-  --background-color2-: #a7d3eeca;
-  --background-color3-: #c2d9e840;
-  --orange-color-: #dc7032;
+  --footer-heigth-: 100px;
+  --background-color-: #0d1746;
+  --background-color2-: #2783b6;
+  --background-color3-: #36b0d6;
+  --background-color4-: #36b1d65a;
+  --gradient-: radial-gradient(var(--background-color2-), var(--background-color-));
+  --orange-color-: #f9a314;
+  --orange-color2-: #f4d892;
+
   --header-color-: rgba(114, 217, 212, 0.391);
 }
 .wrapper {
   width: 1020px;
   margin: 0px auto;
-
-  padding: 20px 0;
+  height: 100%;
 }
 main {
-  height: 100vh;
-  width: 100%;
+  height: calc(100vh - var(--header-heigth-));
   background-image:
-    radial-gradient(var(--background-color3-), var(--background-color2-)),
-    url(./imgs/Background.jpg);
-  /* background-color: var(--background-color3-); */
+    radial-gradient(var(--background-color4-), var(--background-color-)), url(./imgs/Background.jpg);
+}
+.content {
+  height: calc(100% - var(--header-heigth-));
+  margin-top: var(--header-heigth-);
+
+  background-color: rgba(255, 255, 255, 0.379);
   display: flex;
+  /* justify-content: space-evenly; */
+
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  box-shadow: 0 0 5px grey;
-  position: absolute;
-  /* top: var(--header-heigth-); */
-  z-index: 0;
+  padding: 15px 0;
+  box-shadow: 0 0 5px black;
 }
 h1 {
   font-size: 42px;
   font-weight: bold;
   font-style: italic;
   text-align: center;
-  margin-bottom: 15px;
-  color: var(--orange-color-);
-  -webkit-text-stroke: 0.5px black;
+  margin: 40px 0 60px;
+  color: var(--background-color-);
+}
+h2 {
+  font-size: 30px;
+  color: var(--background-color-);
 }
 h3 {
   font-size: 26px;
-  color: var(--orange-color-);
-  font-weight: bold;
-  -webkit-text-stroke: 0.5px black;
+  color: var(--background-color-);
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -62,31 +69,68 @@ a {
   display: flex;
   background-color: white;
   border: 1px solid black;
+  border-radius: 20px;
   margin: 2px;
   font-size: 20px;
+  width: 100%;
 }
 input {
   border: none;
   text-align: right;
   padding: 0 10px;
+  border-radius: 20px;
 }
-input:focus {
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
 }
 .inputZone > p {
-  padding: 0 10px;
+  padding: 10px 10px;
   border-left: 0.5px dotted black;
 }
 select {
-  /* border: none; */
-  /* width: 42px; */
-
   -webkit-appearance: none;
   -moz-appearance: none;
-  text-indent: 1px;
-  text-overflow: '';
-  /* background: none; */
+
   font-size: 18px;
   text-align: center;
-  padding: 3px 10px;
+  padding: 6px 10px;
+
+  border: none;
+  border-radius: 20px;
+  font-size: 24px;
+  box-shadow: 0 0 10px black;
+  background: rgba(189, 187, 187, 0.98);
+  /* color: white; */
+}
+select:hover {
+  background: linear-gradient(var(--orange-color-), var(--orange-color2-));
+  color: white;
+  cursor: pointer;
+}
+
+button {
+  background-color: #a0b2c1;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 0 5px black;
+  margin: 0 10px;
+}
+.roundButton {
+  width: 50px;
+  height: 50px;
+}
+.handleButton {
+  align-self: center;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+button:hover {
+  background: linear-gradient(var(--orange-color-), var(--orange-color2-));
+  color: white;
+  cursor: pointer;
 }

@@ -8,7 +8,15 @@ import { ref } from 'vue'
 
 import VueCookies from 'vue-cookies'
 
-const app = createApp(App)
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import { faExchangeAlt, faBook, faCoins, faClock, faBars } from '@fortawesome/free-solid-svg-icons'
+import {} from '@fortawesome/free-regular-svg-icons'
+import {} from '@fortawesome/free-brands-svg-icons'
+library.add(faExchangeAlt, faBook, faCoins, faClock, faBars)
+
+const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
 
 app.use(router)
 app.use(VueCookies)

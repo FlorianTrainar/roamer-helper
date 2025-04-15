@@ -14,9 +14,10 @@ const transition = ref('')
 const updateCountry = (num) => {
   if (num === 1) {
     $cookies.set('country1', country1.value)
-    // GlobalStore.country1.value = country1.value
+    sessionStorage.removeItem('text1')
   } else if (num === 2) {
     $cookies.set('country2', country2.value)
+    sessionStorage.removeItem('text2')
   }
   router.go()
 }
@@ -26,51 +27,56 @@ const invertCountry = () => {
 
   $cookies.set('country1', GlobalStore.country2.value)
   $cookies.set('country2', GlobalStore.country1.value)
+  sessionStorage.removeItem('text1')
+  sessionStorage.removeItem('text2')
 
   router.go()
 }
 </script>
 <template>
   <header>
-    <section>
-      <div class="background">
-        <img src="../assets/imgs/sky.jpg" alt="" />
-      </div>
-
+    <div class="wrapper">
       <div class="home">
         <RouterLink :to="{ name: 'home' }">
-          <img id="logo" src="../assets/imgs/Logo2cutwhite.png" alt="" />
-        </RouterLink>
-        <RouterLink :to="{ name: 'home' }">
-          <h3>Roamer</h3>
-          <h3>Helper</h3>
+          <img id="logo" src="../assets/imgs/LogoRH.png" alt="" />
         </RouterLink>
       </div>
+
+      <!-- --- -->
+
       <div v-if="country1 && country2" class="countrySelectorZone">
-        <!-- <h2>{{ GlobalStore.country1.value.country }}</h2> -->
         <div>
+          <img class="flag" :src="GlobalStore.country1.value.flag" alt="" />
+
           <select id="country1" v-model="country1" @change="updateCountry(1)">
-            <!-- <option value="">Select</option> -->
             <option v-for="countries in countries" :key="countries.country" :value="countries">
               {{ countries.country }}
             </option>
           </select>
         </div>
-        <button @click="invertCountry">Fleches</button>
+
+        <button class="roundButton" @click="invertCountry">
+          <font-awesome-icon :icon="['fas', 'exchange-alt']" />
+        </button>
 
         <div>
           <select name="langage2" id="" v-model="country2" @change="updateCountry(2)">
-            <!-- <option value="">@</option> -->
             <option v-for="countries in countries" :key="countries.country" :value="countries">
               {{ countries.country }}
             </option>
           </select>
+          <img class="flag" :src="GlobalStore.country2.value.flag" alt="" />
         </div>
-        <!-- <h2>{{ GlobalStore.country2.value.country }}</h2> -->
       </div>
-      <div>Menu</div>
-    </section>
-    <!-- <section v-if="country1 && country2">
+
+      <!-- --- -->
+      <div>
+        <button class="roundButton">
+          <font-awesome-icon :icon="['fas', 'bars']" />
+        </button>
+      </div>
+
+      <!-- <section v-if="country1 && country2">
       <div>
         <RouterLink :to="{ name: 'home' }">Home</RouterLink>
       </div>
@@ -84,6 +90,7 @@ const invertCountry = () => {
         <RouterLink :to="{ name: 'time' }">Time Zone</RouterLink>
       </div>
     </section> -->
+    </div>
   </header>
 </template>
 <style scoped>
@@ -91,51 +98,64 @@ header {
   height: var(--header-heigth-);
   width: 100%;
   box-shadow: 0 0 15px black;
-  z-index: 1;
+
   position: absolute;
-  background-color: var(--background-color-);
+  z-index: 1;
+  top: 0px;
+
+  background: var(--gradient-);
 }
-header > section {
-  width: 100%;
+
+.wrapper {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
 }
-.countrySelectorZone {
-  display: flex;
-  gap: 5px;
-  /* border: 1px solid blue; */
-}
-
-/* --- */
-
-.background {
-  position: absolute;
-  width: 100%;
-  height: 99%;
-
-  top: 0px;
-  z-index: -1;
-}
-.background img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  object-position: left;
+.wrapper > div {
+  /* border: solid blue 1px; */
+  flex: 1;
+  justify-content: center;
+  text-align: center;
 }
 
 .home {
   display: flex;
   align-items: center;
+  border-radius: 100px;
 }
-
 #logo {
-  /* height: 120px; */
+  height: 100%;
   width: 100px;
   object-fit: contain;
   /* background-color: white; */
-  border-radius: 20px;
-  padding: 10px;
-  /* box-shadow: 0 0 5px black; */
+  /* border-radius: 50%; */
+  /* border: solid 1.5px white; */
+  /* box-shadow: -2px 2px 6px black; */
+}
+
+/* --- */
+
+.countrySelectorZone {
+  flex: 2;
+  display: flex;
+  gap: 5px;
+  /* border: 1px solid blue; */
+}
+.countrySelectorZone > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flag {
+  width: 38px;
+  height: 28px;
+  object-fit: cover;
+}
+
+/* --- */
+
+svg {
+  font-size: 24px;
+  /* color: white; */
 }
 </style>

@@ -1,16 +1,26 @@
 export const countries = [
   {
     country: 'U.S.A',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/usa_cmgsly.svg',
     capital: 'Washington D.C',
-    langage: 'english',
+    langage: 'English',
     code: 'en',
     currency: { name: 'U.S dollar', code: 'USD', symbol: '$' },
     time: -4,
+    citiesTime: [
+      { 'New-York': 0 },
+      { Houston: -1 },
+      { Denver: -2 },
+      { 'Los-Angeles': -3 },
+      { Anchorage: -4 },
+      { Honolulu: -6 },
+    ],
   },
   {
     country: 'United Kingdom',
     capital: 'London',
-    langage: 'english',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/gbr_swnmfv.svg',
+    langage: 'English',
     code: 'en',
     currency: { name: 'British Pound Sterling', code: 'GBP', symbol: '£' },
     time: 1,
@@ -18,16 +28,18 @@ export const countries = [
 
   {
     country: 'France',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/fra_wmqxly.svg',
     capital: 'Paris',
-    langage: 'français',
+    langage: 'Français',
     code: 'fr',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
     time: 2,
   },
   {
     country: 'Deutshland',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/deu_yrvkeq.svg',
     capital: 'Berlin',
-    langage: 'Deutsh',
+    langage: 'Deutsch',
     code: 'de',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
     time: 2,
@@ -35,6 +47,7 @@ export const countries = [
   {
     country: 'Portugal',
     capital: 'Lisbon',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/prt_x28xf6.svg',
     langage: 'Portuges',
     code: 'pt',
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
@@ -43,6 +56,7 @@ export const countries = [
   {
     country: 'Japan',
     capital: 'Tokyo',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/jpn_ygejkb.svg',
     langage: 'Japanese',
     code: 'ja',
     currency: { name: 'Yen', code: 'JPY', symbol: '¥' },
