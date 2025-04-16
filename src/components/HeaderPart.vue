@@ -15,10 +15,15 @@ const updateCountry = (num) => {
   if (num === 1) {
     $cookies.set('country1', country1.value)
     sessionStorage.removeItem('text1')
+    sessionStorage.removeItem('langage1Selected')
+    sessionStorage.removeItem('selectedCity1')
   } else if (num === 2) {
     $cookies.set('country2', country2.value)
     sessionStorage.removeItem('text2')
+    sessionStorage.removeItem('langage2Selected')
+    sessionStorage.removeItem('selectedCity2')
   }
+
   router.go()
 }
 
@@ -29,6 +34,10 @@ const invertCountry = () => {
   $cookies.set('country2', GlobalStore.country1.value)
   sessionStorage.removeItem('text1')
   sessionStorage.removeItem('text2')
+  sessionStorage.removeItem('langage1Selected')
+  sessionStorage.removeItem('langage2Selected')
+  sessionStorage.removeItem('selectedCity1')
+  sessionStorage.removeItem('selectedCity2')
 
   router.go()
 }
@@ -75,21 +84,6 @@ const invertCountry = () => {
           <font-awesome-icon :icon="['fas', 'bars']" />
         </button>
       </div>
-
-      <!-- <section v-if="country1 && country2">
-      <div>
-        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
-      </div>
-      <div>
-        <RouterLink :to="{ name: 'translate' }">Translate</RouterLink>
-      </div>
-      <div>
-        <RouterLink :to="{ name: 'currencies' }">Currencies</RouterLink>
-      </div>
-      <div>
-        <RouterLink :to="{ name: 'time' }">Time Zone</RouterLink>
-      </div>
-    </section> -->
     </div>
   </header>
 </template>
@@ -103,7 +97,7 @@ header {
   z-index: 1;
   top: 0px;
 
-  background: var(--gradient-);
+  background: var(--header-gradient-);
 }
 
 .wrapper {

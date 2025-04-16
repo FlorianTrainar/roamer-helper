@@ -8,14 +8,14 @@
 </template>
 <style scoped>
 footer {
-  height: var(--footer-heigth-);
+  height: var(--header-heigth-);
   width: 100%;
   position: absolute;
   bottom: 0px;
-  background: var(--gradient-);
+  background: var(--header-gradient-);
   z-index: 1;
   text-align: center;
-  line-height: var(--footer-heigth-);
+  line-height: var(--header-heigth-);
   box-shadow: 0 0 15px black;
 }
 </style>

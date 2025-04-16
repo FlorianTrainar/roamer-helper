@@ -115,11 +115,11 @@ img {
   color: black;
 }
 .appSelect a:hover {
-  background: linear-gradient(var(--orange-color-), var(--orange-color2-));
+  background: var(--orange-gradient-);
   color: white;
   /* font-weight: bold; */
 }
 .appSelect svg {
-  color: var(--background-color3-);
+  color: var(--icon-color-);
 }
 </style>

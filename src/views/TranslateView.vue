@@ -1,13 +1,26 @@
 <script setup>
 import { ref, inject } from 'vue'
 import translate from 'translate'
+import { useRouter } from 'vue-router'
+
 import { countries } from '@/assets/javascript/countries'
+
+const router = useRouter()
 
 const GlobalStore = inject('GlobalStore')
 
 const langage1 = ref('')
-const text1 = ref('')
+const langage1Selected = ref(0)
 const langage2 = ref('')
+if (sessionStorage.getItem('langage1Selected')) {
+  langage1Selected.value = parseInt(sessionStorage.getItem('langage1Selected'))
+}
+const langage2Selected = ref(0)
+if (sessionStorage.getItem('langage2Selected')) {
+  langage2Selected.value = parseInt(sessionStorage.getItem('langage2Selected'))
+}
+const text1 = ref('')
+
 const text2 = ref('')
 
 if (sessionStorage.getItem('text1')) {
@@ -17,13 +30,28 @@ if (sessionStorage.getItem('text2')) {
   text2.value = sessionStorage.getItem('text2')
 }
 
+const selectLangage = (i, num) => {
+  if (num === 1) {
+    langage1Selected.value = i
+    sessionStorage.setItem('langage1Selected', i)
+  } else if (num === 2) {
+    langage2Selected.value = i
+    sessionStorage.setItem('langage2Selected', i)
+  }
+
+  // router.go()
+}
+
 const handle = async () => {
-  langage1.value = GlobalStore.country1.value.code
-  langage2.value = GlobalStore.country2.value.code
+  langage1.value = String(Object.values(GlobalStore.country1.value.langage[langage1Selected.value]))
+  langage2.value = String(Object.values(GlobalStore.country2.value.langage[langage2Selected.value]))
 
   if (text1.value) {
-    const text = await translate(text1.value, { from: langage1.value, to: langage2.value })
-    console.log(text)
+    const text = await translate(text1.value, {
+      from: langage1.value,
+      to: langage2.value,
+    })
+    console.log(langage1.value)
     text2.value = text
   } else if (text2.value) {
     const text = await translate(text2.value, { from: langage2.value, to: langage1.value })
@@ -51,8 +79,20 @@ const inputRefresh = (num) => {
 
         <form @submit.prevent="translate">
           <div>
-            <div>
-              <h2>{{ GlobalStore.country1.value.langage }}</h2>
+            <section>
+              <div class="langageList">
+                <h2
+                  v-for="(langage, i) in GlobalStore.country1.value.langage"
+                  :key="langage"
+                  :class="{
+                    langageSelected: i === langage1Selected,
+                  }"
+                  @click="(selectLangage(i, 1), inputRefresh(2))"
+                >
+                  {{ String(Object.keys(langage)) }}
+                </h2>
+              </div>
+
               <textarea
                 name=""
                 id=""
@@ -61,9 +101,20 @@ const inputRefresh = (num) => {
                 v-model="text1"
                 @input="inputRefresh(1)"
               ></textarea>
-            </div>
-            <div>
-              <h2>{{ GlobalStore.country2.value.langage }}</h2>
+            </section>
+            <section>
+              <div class="langageList">
+                <h2
+                  v-for="(langage, i) in GlobalStore.country2.value.langage"
+                  :key="langage"
+                  :class="{
+                    langageSelected: i === langage2Selected,
+                  }"
+                  @click="(selectLangage(i, 2), inputRefresh(1))"
+                >
+                  {{ String(Object.keys(langage)) }}
+                </h2>
+              </div>
               <textarea
                 name=""
                 id=""
@@ -72,7 +123,7 @@ const inputRefresh = (num) => {
                 v-model="text2"
                 @input="inputRefresh(2)"
               ></textarea>
-            </div>
+            </section>
           </div>
           <button class="handleButton" @:click="handle">Translate</button>
         </form>
@@ -96,18 +147,43 @@ form {
 }
 form > div {
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: space-evenly;
+  margin: 0 20px;
 }
-form > div > div {
+form > div > section {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  flex: 1;
+
+  position: relative;
+  z-index: 2;
+}
+.langageList {
+  display: flex;
+  position: absolute;
+  z-index: -1;
+  top: -40px;
+  left: 4px;
+}
+.langageList > h2 {
+  padding: 8px;
+  font-style: italic;
+  border-radius: 20px 20px 0 0;
+}
+.langageList:hover {
+  cursor: pointer;
+}
+.langageSelected {
+  background-color: white;
+  color: var(--orange-color-);
 }
 textarea {
-  width: 90%;
+  width: 100%;
   font-size: 17px;
   resize: none;
+  padding: 10px;
+  border-radius: 10px;
 }
 </style>

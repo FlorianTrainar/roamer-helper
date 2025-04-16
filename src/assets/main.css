@@ -6,16 +6,22 @@
 
 :root {
   --header-heigth-: 100px;
-  --footer-heigth-: 100px;
+
   --background-color-: #0d1746;
-  --background-color2-: #2783b6;
-  --background-color3-: #36b0d6;
-  --background-color4-: #36b1d65a;
-  --gradient-: radial-gradient(var(--background-color2-), var(--background-color-));
+  --background-color-light-: #36b1d65a;
+  --background-radient-: radial-gradient(var(--background-color-light-), var(--background-color-));
+
+  --header-background-color-: #78a3b9;
+  --header-gradient-: radial-gradient(var(--header-background-color-), var(--background-color-));
+
   --orange-color-: #f9a314;
   --orange-color2-: #f4d892;
+  --orange-gradient-: linear-gradient(var(--orange-color-), var(--orange-color2-));
 
-  --header-color-: rgba(114, 217, 212, 0.391);
+  --select-color-: rgba(189, 187, 187, 0.98);
+  --button-color-: #a0b2c1;
+
+  --icon-color-: #1682b0;
 }
 .wrapper {
   width: 1020px;
@@ -24,8 +30,7 @@
 }
 main {
   height: calc(100vh - var(--header-heigth-));
-  background-image:
-    radial-gradient(var(--background-color4-), var(--background-color-)), url(./imgs/Background.jpg);
+  background-image: var(--background-radient-), url(./imgs/Background.jpg);
 }
 .content {
   height: calc(100% - var(--header-heigth-));
@@ -56,14 +61,8 @@ h3 {
   font-size: 26px;
   color: var(--background-color-);
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-a {
-  text-decoration: none;
-  color: black;
-}
+
+/* --- */
 
 .inputZone {
   display: flex;
@@ -80,6 +79,10 @@ input {
   padding: 0 10px;
   border-radius: 20px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 input:focus,
 select:focus,
 textarea:focus {
@@ -89,6 +92,9 @@ textarea:focus {
   padding: 10px 10px;
   border-left: 0.5px dotted black;
 }
+
+/* ---  */
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -101,7 +107,7 @@ select {
   border-radius: 20px;
   font-size: 24px;
   box-shadow: 0 0 10px black;
-  background: rgba(189, 187, 187, 0.98);
+  background: var(--select-color-);
   /* color: white; */
 }
 select:hover {
@@ -111,7 +117,7 @@ select:hover {
 }
 
 button {
-  background-color: #a0b2c1;
+  background-color: var(--button-color-);
   border-radius: 50%;
   border: none;
   box-shadow: 0 0 5px black;
@@ -133,4 +139,9 @@ button:hover {
   background: linear-gradient(var(--orange-color-), var(--orange-color2-));
   color: white;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
