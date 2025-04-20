@@ -1,5 +1,5 @@
 <script setup>
-import { inject, ref } from 'vue'
+import { inject, ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 
 const Router = useRouter()
@@ -37,11 +37,29 @@ const minutes = d.getMinutes()
 const paddedMinutes = String(minutes).padStart(2, '0')
 const utcHour = ref(d.getUTCHours())
 
+// Hour definition
+
+let cities1Hours = []
+if (GlobalStore.country1.value) {
+  for (let i = 0; i < GlobalStore.country1.value.citiesTime.length; i++) {
+    cities1Hours.push(
+      utcHour.value + parseInt(Object.values(GlobalStore.country1.value.citiesTime[i])),
+    )
+  }
+}
+let cities2Hours = []
+if (GlobalStore.country2.value) {
+  for (let i = 0; i < GlobalStore.country2.value.citiesTime.length; i++) {
+    cities2Hours.push(
+      utcHour.value + parseInt(Object.values(GlobalStore.country2.value.citiesTime[i])),
+    )
+  }
+}
+
 // Total definition
 
-const definitiveTime = ref(null)
-
 const timeSet = (hour) => {
+  const definitiveTime = ref(null)
   if (!displaySwitched.value) {
     if (hour > 23) {
       definitiveTime.value = hour - 24
@@ -109,7 +127,7 @@ const switchDisplay = (boolean) => {
                 </p>
                 <p>:</p>
                 <p>
-                  {{ timeSet(parseInt(utcHour) + parseInt(Object.values(cities))) }}
+                  {{ timeSet(cities1Hours[i]) }}
                 </p>
               </div>
               <div>
@@ -147,7 +165,7 @@ const switchDisplay = (boolean) => {
                 </p>
                 <p>:</p>
                 <p>
-                  {{ timeSet(parseInt(utcHour) + parseInt(Object.values(cities))) }}
+                  {{ timeSet(cities2Hours[i]) }}
                 </p>
               </div>
               <div>
