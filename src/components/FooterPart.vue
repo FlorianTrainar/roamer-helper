@@ -13,7 +13,7 @@
 footer {
   height: var(--header-heigth-);
   width: 100%;
-  position: absolute;
+  position: relative;
   bottom: 0px;
   background: var(--header-gradient-);
   z-index: 1;
