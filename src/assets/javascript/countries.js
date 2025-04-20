@@ -8,7 +8,7 @@ export const countries = [
   },
   {
     country: 'Canada',
-    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744728464/chn_p26hi1.svg',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744974496/can_ruqeje.svg',
     langage: [{ English: 'en' }, { French: 'fr' }],
     currency: { name: 'Canadian Dollar ', code: 'CAD', symbol: '$' },
     citiesTime: [{ Toronto: -4 }, { Winnipeg: -5 }, { Calgary: -6 }, { Vancouver: -7 }],

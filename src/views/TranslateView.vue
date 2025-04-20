@@ -97,9 +97,10 @@ const inputRefresh = (num) => {
                 name=""
                 id=""
                 cols="60"
-                rows="10"
+                rows="15"
                 v-model="text1"
                 @input="inputRefresh(1)"
+                @keyup.enter="handle"
               ></textarea>
             </section>
             <section>
@@ -119,13 +120,14 @@ const inputRefresh = (num) => {
                 name=""
                 id=""
                 cols="60"
-                rows="10"
+                rows="15"
                 v-model="text2"
                 @input="inputRefresh(2)"
+                @keyup.enter="handle"
               ></textarea>
             </section>
           </div>
-          <button class="handleButton" @:click="handle">Translate</button>
+          <!-- <button class="handleButton" @:click="handle">Translate</button> -->
         </form>
       </section>
     </div>
@@ -139,18 +141,21 @@ const inputRefresh = (num) => {
   </main>
 </template>
 <style scoped>
+h1 {
+  margin: 40px 0 60px;
+}
 form {
+  margin-top: 30px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 form > div {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
   justify-content: space-evenly;
-  margin: 0 20px;
+  margin: 0 30px;
 }
 form > div > section {
   display: flex;
@@ -178,12 +183,14 @@ form > div > section {
 .langageSelected {
   background-color: white;
   color: var(--orange-color-);
+  box-shadow: 0 0px 5px black;
 }
 textarea {
   width: 100%;
   font-size: 17px;
   resize: none;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
+  box-shadow: 0 1px 5px black;
 }
 </style>

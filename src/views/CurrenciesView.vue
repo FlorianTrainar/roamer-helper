@@ -1,6 +1,7 @@
 <script setup>
-import { ref, inject } from 'vue'
+import { ref, inject, onMounted } from 'vue'
 import { Converter } from 'easy-currencies'
+
 import { countries } from '@/assets/javascript/countries'
 
 const GlobalStore = inject('GlobalStore')
@@ -15,12 +16,17 @@ if (sessionStorage.getItem('value2')) {
 }
 
 const currency1 = ref('')
+if (GlobalStore.country1.value.currency.code) {
+  {
+    currency1.value = GlobalStore.country1.value.currency.code
+  }
+}
 const currency2 = ref('')
+if (GlobalStore.country2.value.currency.code) {
+  currency2.value = GlobalStore.country2.value.currency.code
+}
 
 const handle = async () => {
-  currency1.value = GlobalStore.country1.value.currency.code
-  currency2.value = GlobalStore.country2.value.currency.code
-
   const converter = new Converter()
   if (value1.value) {
     const value = await converter.convert(value1.value, currency1.value, currency2.value)
@@ -32,6 +38,32 @@ const handle = async () => {
     value1.value = value.toFixed(2)
   }
 }
+
+const currencyArray = ref([])
+const currencyValue = ref([])
+
+onMounted(async () => {
+  const converter = new Converter()
+  for (let i = 0; i < countries.length; i++) {
+    if (
+      currencyArray.value.indexOf(countries[i].currency.code) === -1 &&
+      countries[i].currency.code !== GlobalStore.country1.value.currency.code
+    ) {
+      currencyArray.value.push(countries[i].currency.code)
+    }
+  }
+  currencyArray.value.sort()
+
+  console.log(currencyArray.value)
+
+  for (let i = 0; i < currencyArray.value.length; i++) {
+    const value = await converter.convert(1, currency1.value, currencyArray.value[i])
+
+    currencyValue.value.push({ [currencyArray.value[i]]: value })
+  }
+  console.log(currencyValue.value)
+})
+
 const inputRefresh = (num) => {
   sessionStorage.setItem('value1', value1.value)
   sessionStorage.setItem('value2', value2.value)
@@ -53,7 +85,8 @@ const inputRefresh = (num) => {
           <div>
             <div>
               <h3 v-if="GlobalStore.country1.value" for="value1">
-                {{ GlobalStore.country1.value.currency.name }} :
+                {{ GlobalStore.country1.value.currency.name }}
+                <span>({{ GlobalStore.country1.value.currency.code }})</span>
               </h3>
               <div class="inputZone">
                 <input
@@ -61,6 +94,7 @@ const inputRefresh = (num) => {
                   id="value1"
                   step="0.01"
                   v-model="value1"
+                  @keyup.enter="handle"
                   @input="inputRefresh(1)"
                 />
                 <p v-if="GlobalStore.country1.value">
@@ -70,7 +104,8 @@ const inputRefresh = (num) => {
             </div>
             <div>
               <h3 v-if="GlobalStore.country2.value" for="value2">
-                {{ GlobalStore.country2.value.currency.name }} :
+                {{ GlobalStore.country2.value.currency.name }}
+                <span>({{ GlobalStore.country2.value.currency.code }})</span>
               </h3>
               <div class="inputZone">
                 <input
@@ -78,6 +113,7 @@ const inputRefresh = (num) => {
                   id="value2"
                   step="0.01"
                   v-model="value2"
+                  @keyup.enter="handle"
                   @input="inputRefresh(2)"
                 />
                 <p v-if="GlobalStore.country2.value">
@@ -86,8 +122,24 @@ const inputRefresh = (num) => {
               </div>
             </div>
           </div>
-          <button class="handleButton" @click="handle">Convert</button>
         </form>
+        <section class="rateZone">
+          <h3>{{ GlobalStore.country1.value.currency.name }} rates</h3>
+          <div>
+            <p
+              v-for="(rate, i) in currencyValue"
+              :key="rate"
+              :class="{
+                selectedCurrency:
+                  String(Object.keys(currencyValue[i])) ===
+                  GlobalStore.country2.value.currency.code,
+              }"
+            >
+              {{ String(Object.keys(currencyValue[i])) }} :
+              {{ String(Object.values(currencyValue[i])) }}
+            </p>
+          </div>
+        </section>
       </section>
 
       <!-- <section>
@@ -100,17 +152,19 @@ const inputRefresh = (num) => {
   </main>
 </template>
 <style scoped>
+h1 {
+  margin: 40px 0;
+}
 form {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 40px;
 }
 form > div {
   display: flex;
   align-items: center;
   gap: 40px;
-  justify-content: space-evenly;
 }
 form > div > div {
   display: flex;
@@ -118,8 +172,42 @@ form > div > div {
   align-items: center;
   gap: 10px;
 }
+.rateZone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 3px black;
+  border: solid 1px black;
+  border-radius: 20px;
+  width: 60%;
+  height: 300px;
+  padding: 10px;
+}
+.rateZone > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+
+  height: 78%;
+  width: 100%;
+}
+.selectedCurrency {
+  font-weight: bold;
+  color: var(--orange-color-);
+}
+.rateZone > h3 {
+  margin-bottom: 10px;
+}
 input {
   font-size: 20px;
   resize: none;
+}
+span {
+  font-style: italic;
+  font-size: 20px;
 }
 </style>

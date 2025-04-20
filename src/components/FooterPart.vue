@@ -2,7 +2,10 @@
 <template>
   <footer>
     <nav>
-      <p>Made by <a href="">Florian Trainar</a> with <a href="">Vue.js</a></p>
+      <p>
+        Made by <a href="">Florian Trainar</a> with
+        <a href="https://vuejs.org/" target="_blank">Vue.js</a>
+      </p>
     </nav>
   </footer>
 </template>
@@ -17,5 +20,9 @@ footer {
   text-align: center;
   line-height: var(--header-heigth-);
   box-shadow: 0 0 15px black;
+  font-size: 20px;
+}
+a {
+  font-weight: bold;
 }
 </style>

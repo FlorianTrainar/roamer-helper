@@ -1,14 +1,22 @@
 <script setup>
 import { ref, inject, onBeforeMount } from 'vue'
 import { countries } from '@/assets/javascript/countries'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterView, RouterLink, useRouter } from 'vue-router'
+import MenuPart from './MenuPart.vue'
 
 const router = useRouter()
 
 const GlobalStore = inject('GlobalStore')
 
-const country1 = ref($cookies.get('country1')) || ref('')
-const country2 = ref($cookies.get('country2')) || ref('')
+const country1 = ref('')
+const country2 = ref('')
+if ($cookies.get('country1')) {
+  country1.value = $cookies.get('country1')
+}
+if ($cookies.get('country2')) {
+  country2.value = $cookies.get('country2')
+}
+
 const transition = ref('')
 
 const updateCountry = (num) => {
@@ -41,6 +49,15 @@ const invertCountry = () => {
 
   router.go()
 }
+
+const menuDisplayed = ref(false)
+const displayMenu = () => {
+  if (!menuDisplayed.value) {
+    menuDisplayed.value = true
+  } else if (menuDisplayed.value) {
+    menuDisplayed.value = false
+  }
+}
 </script>
 <template>
   <header>
@@ -53,36 +70,56 @@ const invertCountry = () => {
 
       <!-- --- -->
 
-      <div v-if="country1 && country2" class="countrySelectorZone">
+      <div class="countrySelectorZone">
         <div>
-          <img class="flag" :src="GlobalStore.country1.value.flag" alt="" />
+          <img
+            v-if="GlobalStore.country1.value"
+            class="flag"
+            :src="GlobalStore.country1.value.flag"
+            alt=""
+          />
 
           <select id="country1" v-model="country1" @change="updateCountry(1)">
+            <option value="" hidden>Your country</option>
             <option v-for="countries in countries" :key="countries.country" :value="countries">
               {{ countries.country }}
             </option>
           </select>
         </div>
 
-        <button class="roundButton" @click="invertCountry">
+        <button
+          :class="{ invisible: !GlobalStore.country1.value || !GlobalStore.country2.value }"
+          class="roundButton"
+          @click="invertCountry"
+        >
           <font-awesome-icon :icon="['fas', 'exchange-alt']" />
         </button>
 
         <div>
-          <select name="langage2" id="" v-model="country2" @change="updateCountry(2)">
+          <select name="country2" id="" v-model="country2" @change="updateCountry(2)">
+            <option value="" hidden>Your destination</option>
             <option v-for="countries in countries" :key="countries.country" :value="countries">
               {{ countries.country }}
             </option>
           </select>
-          <img class="flag" :src="GlobalStore.country2.value.flag" alt="" />
+          <img
+            v-if="GlobalStore.country2.value"
+            class="flag"
+            :src="GlobalStore.country2.value.flag"
+            alt=""
+          />
         </div>
       </div>
 
       <!-- --- -->
       <div>
-        <button class="roundButton">
+        <button @click="displayMenu" class="roundButton" :class="{ activated: menuDisplayed }">
           <font-awesome-icon :icon="['fas', 'bars']" />
         </button>
+
+        <div :class="{ hidden: !menuDisplayed }">
+          <MenuPart @display="(payload) => displayMenu()" />
+        </div>
       </div>
     </div>
   </header>
@@ -141,8 +178,9 @@ header {
 }
 
 .flag {
-  width: 38px;
+  width: 44px;
   height: 28px;
+
   object-fit: cover;
 }
 
@@ -151,5 +189,17 @@ header {
 svg {
   font-size: 24px;
   /* color: white; */
+}
+.roundButton {
+  position: relative;
+}
+.activated {
+  transform: rotate(90deg);
+}
+.hidden {
+  display: none;
+}
+.invisible {
+  visibility: hidden;
 }
 </style>

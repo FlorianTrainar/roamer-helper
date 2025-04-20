@@ -10,7 +10,6 @@ const router = useRouter()
 
 const country1 = ref('')
 const country2 = ref('')
-const transition = ref('')
 
 // onBeforeMount(() => {
 //   $cookies.remove('country1')
@@ -20,12 +19,10 @@ const transition = ref('')
 const updateCountry = (num) => {
   if (num === 1) {
     $cookies.set('country1', country1.value)
-    // GlobalStore.country1.value = country1.value
   } else if (num === 2) {
     $cookies.set('country2', country2.value)
   }
 }
-
 const start = () => {
   router.go()
 
@@ -37,30 +34,44 @@ const start = () => {
     <div class="wrapper">
       <div class="content">
         <div>
-          <!-- <h1>Welcome to</h1> -->
+          <h1>Welcome to</h1>
           <img src="../assets/imgs/logoRH.png" alt="" />
         </div>
 
         <div
-          v-if="!GlobalStore.country1.value && !GlobalStore.country2.value"
-          class="countrySelect"
+          v-if="!GlobalStore.country1.value || !GlobalStore.country2.value"
+          class="countrySelectZone"
         >
+          <h2>Please select your country and your destination to start</h2>
           <div>
-            <select id="country1" v-model="country1" @change="updateCountry(1)">
-              <option value="" hidden>Your country</option>
-              <option v-for="countries in countries" :key="countries.country" :value="countries">
-                {{ countries.country }}
-              </option>
-            </select>
-          </div>
-          <button v-if="country1 && country2" @click="start">START</button>
-          <div>
-            <select name="langage2" id="" v-model="country2" @change="updateCountry(2)">
-              <option value="" hidden>Your destination</option>
-              <option v-for="countries in countries" :key="countries.country" :value="countries">
-                {{ countries.country }}
-              </option>
-            </select>
+            <section>
+              <select
+                class="countrySelector"
+                id="country1"
+                v-model="country1"
+                @change="updateCountry(1)"
+              >
+                <option value="" hidden>Your country</option>
+                <option v-for="countries in countries" :key="countries.country" :value="countries">
+                  {{ countries.country }}
+                </option>
+              </select>
+            </section>
+            <button class="starter" v-if="country1 && country2" @click="start">START</button>
+            <section>
+              <select
+                class="countrySelector"
+                name="langage2"
+                id=""
+                v-model="country2"
+                @change="updateCountry(2)"
+              >
+                <option value="" hidden>Your destination</option>
+                <option v-for="countries in countries" :key="countries.country" :value="countries">
+                  {{ countries.country }}
+                </option>
+              </select>
+            </section>
           </div>
         </div>
 
@@ -84,29 +95,41 @@ const start = () => {
   </main>
 </template>
 <style scoped>
-.content {
-  justify-content: space-evenly;
+h1 {
+  margin: 40px 0;
 }
-
 img {
-  width: 500px;
+  width: 400px;
   flex: 1;
 }
 
 /* --- */
 
-.countrySelect {
+.countrySelectZone {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  margin: 30px 0;
 }
+.countrySelectZone > div {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 40px 0;
+}
+.starter {
+  background-color: white;
+}
+
+/* --- */
 
 .appSelect {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 100px 0 40px;
 }
 
-.appSelect a {
+.appSelect a,
+.countrySelector {
   border-radius: 20px;
   font-size: 26px;
   background-color: white;
@@ -114,7 +137,8 @@ img {
   padding: 10px 15px;
   color: black;
 }
-.appSelect a:hover {
+.appSelect a:hover,
+.countrySelector:hover {
   background: var(--orange-gradient-);
   color: white;
   /* font-weight: bold; */
