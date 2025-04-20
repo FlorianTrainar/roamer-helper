@@ -2,6 +2,16 @@
 
 * {
   box-sizing: border-box;
+  font-family: 'Playfair-Display';
+}
+
+@font-face {
+  font-family: 'Playfair-Display';
+  src: url(../assets/fonts/PlayfairDisplay-Regular.woff) format('woff');
+}
+@font-face {
+  font-family: 'Bebas-Neue';
+  src: url(../assets/fonts/BebasNeue-Regular.woff) format('woff');
 }
 
 :root {
@@ -24,6 +34,7 @@
 
   --icon-color-: #1682b0;
 }
+
 .wrapper {
   width: 1020px;
   margin: 0px auto;
@@ -49,11 +60,9 @@ main {
   box-shadow: 0 0 5px black;
 }
 h1 {
-  font-size: 42px;
-  font-weight: bold;
-  font-style: italic;
+  font-family: 'Bebas-Neue';
+  font-size: 58px;
   text-align: center;
-
   color: var(--background-color-);
 }
 h2 {
@@ -148,4 +157,32 @@ button:hover {
 a {
   text-decoration: none;
   color: black;
+}
+
+/* --- */
+/* MEDIA QUERY */
+/* --- */
+
+@media (max-width: 1080px) {
+  .wrapper {
+    width: 900px;
+  }
+  .content {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 900px) {
+  .wrapper {
+    width: 600px;
+  }
+  select {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    width: 100vw;
+  }
 }

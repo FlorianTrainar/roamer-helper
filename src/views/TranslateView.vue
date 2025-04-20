@@ -173,9 +173,10 @@ form > div > section {
   left: 4px;
 }
 .langageList > h2 {
-  padding: 8px;
+  padding: 10px;
   font-style: italic;
   border-radius: 20px 20px 0 0;
+  font-size: 22px;
 }
 .langageList:hover {
   cursor: pointer;
@@ -192,5 +193,25 @@ textarea {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 1px 5px black;
+  font-family: monospace;
+}
+
+/* --- */
+/* Media Query */
+/* --- */
+
+@media (max-width: 900px) {
+  h1 {
+    margin: 20px 0 30px;
+    font-size: 38px;
+  }
+
+  form > div {
+    flex-direction: column;
+    gap: 60px;
+  }
+  textarea {
+    height: 200px;
+  }
 }
 </style>

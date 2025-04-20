@@ -199,7 +199,7 @@ section > div {
   background-color: rgb(233, 237, 239);
   border-radius: 20px;
   box-shadow: 0 0 5px black;
-  width: 40%;
+  width: 450px;
   height: 340px;
   margin-bottom: 40px;
 }
@@ -214,9 +214,11 @@ section > div {
 }
 .timeZone > div:first-of-type {
   display: flex;
+  font-family: monospace;
 }
 .timeZone > div:last-of-type {
   font-style: italic;
+  font-family: monospace;
 }
 .timeZone > div > p:first-child,
 .timeZone > div > p:last-child {
@@ -235,7 +237,7 @@ p {
 }
 .selectedCity span {
   font-weight: normal;
-  font-size: 20px;
+  font-size: 18px;
 }
 .selectedCity svg {
   color: white;
@@ -268,5 +270,37 @@ button {
   background-color: white;
   font-size: 20px;
   border-radius: 20px;
+}
+
+@media (max-width: 1080px) {
+  section > div {
+    width: 400px;
+  }
+}
+
+@media (max-width: 900px) {
+  h1 {
+    margin: 20px 0 30px;
+    font-size: 38px;
+  }
+  section {
+    flex-direction: column;
+    align-items: center;
+  }
+  section > div {
+    width: 90%;
+    padding: 15px;
+    height: 240px;
+    overflow: scroll;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 18px;
+  }
+  .selectedCity span {
+    font-size: 15px;
+  }
+}
+@media (max-width: 600px) {
 }
 </style>

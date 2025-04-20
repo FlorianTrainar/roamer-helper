@@ -172,6 +172,7 @@ form > div > div {
   align-items: center;
   gap: 10px;
 }
+
 .rateZone {
   display: flex;
   flex-direction: column;
@@ -180,20 +181,24 @@ form > div > div {
   box-shadow: 0 0 3px black;
   border: solid 1px black;
   border-radius: 20px;
-  width: 60%;
+  width: 600px;
   height: 300px;
   padding: 10px;
 }
 .rateZone > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   gap: 10px;
   margin-top: 10px;
+  padding: 0 20px;
   flex-wrap: wrap;
 
   height: 78%;
   width: 100%;
+
+  font-family: monospace;
+  font-size: 20px;
 }
 .selectedCurrency {
   font-weight: bold;
@@ -202,12 +207,40 @@ form > div > div {
 .rateZone > h3 {
   margin-bottom: 10px;
 }
+.inputZone {
+  font-family: monospace;
+}
 input {
   font-size: 20px;
   resize: none;
+  font-family: monospace;
 }
 span {
   font-style: italic;
   font-size: 20px;
+}
+
+/* --- */
+/* Media Query */
+/* --- */
+
+@media (max-width: 900px) {
+  h1 {
+    margin: 20px 0 30px;
+    font-size: 38px;
+  }
+
+  form > div {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .rateZone {
+    width: 500px;
+  }
+}
+@media (max-width: 600px) {
+  .rateZone {
+    width: 90%;
+  }
 }
 </style>

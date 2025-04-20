@@ -3,6 +3,9 @@ import { RouterLink } from 'vue-router'
 </script>
 <template>
   <div class="appSelect">
+    <RouterLink id="homeLink" :to="{ name: 'home' }" @click="$emit('display', false)"
+      >Home <font-awesome-icon :icon="['fas', 'home']"
+    /></RouterLink>
     <RouterLink :to="{ name: 'translate' }" @click="$emit('display', false)"
       >Translate <font-awesome-icon :icon="['fas', 'book']"
     /></RouterLink>
@@ -44,5 +47,14 @@ div {
 }
 .appSelect svg {
   color: var(--icon-color-);
+}
+#homeLink {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #homeLink {
+    display: flex;
+  }
 }
 </style>

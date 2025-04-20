@@ -140,10 +140,12 @@ header {
 .wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 }
 .wrapper > div {
   /* border: solid blue 1px; */
-  flex: 1;
+  /* flex: 1; */
   justify-content: center;
   text-align: center;
 }
@@ -153,10 +155,12 @@ header {
   align-items: center;
   border-radius: 100px;
 }
+
 #logo {
   height: 100%;
   width: 100px;
   object-fit: contain;
+  /* margin-left: 40px; */
   /* background-color: white; */
   /* border-radius: 50%; */
   /* border: solid 1.5px white; */
@@ -166,7 +170,6 @@ header {
 /* --- */
 
 .countrySelectorZone {
-  flex: 2;
   display: flex;
   gap: 5px;
   /* border: 1px solid blue; */
@@ -190,9 +193,7 @@ svg {
   font-size: 24px;
   /* color: white; */
 }
-.roundButton {
-  position: relative;
-}
+
 .activated {
   transform: rotate(90deg);
 }
@@ -201,5 +202,67 @@ svg {
 }
 .invisible {
   visibility: hidden;
+}
+
+/* --- */
+/* MEDIA QUERY */
+/* --- */
+
+@media (max-width: 900px) {
+  .countrySelectorZone {
+    flex-direction: column;
+    position: relative;
+  }
+  .countrySelectorZone > div {
+    position: relative;
+    margin-left: 40px;
+  }
+  .countrySelectorZone > button {
+    position: absolute;
+    z-index: 2;
+    right: -35px;
+    top: 20px;
+    rotate: 90deg;
+  }
+  .countrySelectorZone select {
+    height: 38px;
+  }
+  .flag {
+    position: absolute;
+    left: -50px;
+    width: 38px;
+    height: 24px;
+  }
+  .roundButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  svg {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home {
+    display: none;
+  }
+  .wrapper {
+    /* border: solid 1px green; */
+    justify-content: space-around;
+    padding: 0;
+  }
+  .countrySelectorZone {
+    /* border: blue solid 1px; */
+    align-items: center;
+    width: 50%;
+  }
+  .wrapper > div:last-child {
+    /* border: solid 1px blue; */
+  }
+}
+@media (max-width: 400px) {
+  .wrapper {
+  }
 }
 </style>

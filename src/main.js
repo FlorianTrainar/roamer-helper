@@ -19,10 +19,11 @@ import {
   faBars,
   faArrowRight,
   faArrowLeft,
+  faHome,
 } from '@fortawesome/free-solid-svg-icons'
 import {} from '@fortawesome/free-regular-svg-icons'
 import {} from '@fortawesome/free-brands-svg-icons'
-library.add(faExchangeAlt, faBook, faCoins, faClock, faBars, faArrowRight, faArrowLeft)
+library.add(faExchangeAlt, faBook, faCoins, faClock, faBars, faArrowRight, faArrowLeft, faHome)
 
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
 

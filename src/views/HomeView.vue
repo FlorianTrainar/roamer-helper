@@ -118,6 +118,8 @@ img {
 }
 .starter {
   background-color: white;
+  width: 60px;
+  height: 60px;
 }
 
 /* --- */
@@ -145,5 +147,39 @@ img {
 }
 .appSelect svg {
   color: var(--icon-color-);
+}
+
+/* --- */
+/* Media Query */
+/* --- */
+
+@media (max-width: 900px) {
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  h2 {
+    font-size: 22px;
+  }
+  img {
+    width: 350px;
+  }
+  .countrySelectZone > div,
+  .appSelect {
+    flex-direction: column;
+    align-items: center;
+  }
+  .countrySelectZone > div {
+    margin: 20px;
+  }
+}
+@media (max-width: 460px) {
+  img {
+    width: 300px;
+  }
 }
 </style>
