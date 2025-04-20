@@ -35,7 +35,10 @@ const start = () => {
       <div class="content">
         <div>
           <h1>Welcome to</h1>
-          <img src="../assets/imgs/logoRH.png" alt="" />
+          <img
+            src="https://res.cloudinary.com/dnq2ftd45/image/upload/v1745180314/Logo_RH_l7w2dc.png"
+            alt=""
+          />
         </div>
 
         <div

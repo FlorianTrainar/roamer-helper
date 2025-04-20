@@ -64,7 +64,11 @@ const displayMenu = () => {
     <div class="wrapper">
       <div class="home">
         <RouterLink :to="{ name: 'home' }">
-          <img id="logo" src="../assets/imgs/LogoRH.png" alt="" />
+          <img
+            id="logo"
+            src="https://res.cloudinary.com/dnq2ftd45/image/upload/v1745180314/Logo_RH_l7w2dc.png"
+            alt=""
+          />
         </RouterLink>
       </div>
 
