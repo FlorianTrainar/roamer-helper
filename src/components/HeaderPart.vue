@@ -229,7 +229,8 @@ svg {
     rotate: 90deg;
   }
   .countrySelectorZone select {
-    height: 38px;
+    height: 36px;
+    padding: 0 10px;
   }
   .flag {
     position: absolute;
@@ -259,14 +260,15 @@ svg {
   .countrySelectorZone {
     /* border: blue solid 1px; */
     align-items: center;
-    width: 50%;
+    margin-left: 40px;
   }
   .wrapper > div:last-child {
     /* border: solid 1px blue; */
   }
 }
 @media (max-width: 400px) {
-  .wrapper {
+  .countrySelectorZone {
+    margin-left: 20px;
   }
 }
 </style>

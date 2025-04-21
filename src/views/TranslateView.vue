@@ -51,11 +51,11 @@ const handle = async () => {
       from: langage1.value,
       to: langage2.value,
     })
-    console.log(langage1.value)
+    // console.log(langage1.value)
     text2.value = text
   } else if (text2.value) {
     const text = await translate(text2.value, { from: langage2.value, to: langage1.value })
-    console.log(text)
+    // console.log(text)
     text1.value = text
   }
 }
@@ -101,6 +101,7 @@ const inputRefresh = (num) => {
                 v-model="text1"
                 @input="inputRefresh(1)"
                 @keyup.enter="handle"
+                @blur="handle"
               ></textarea>
             </section>
             <section>
@@ -124,6 +125,7 @@ const inputRefresh = (num) => {
                 v-model="text2"
                 @input="inputRefresh(2)"
                 @keyup.enter="handle"
+                @blur="handle"
               ></textarea>
             </section>
           </div>

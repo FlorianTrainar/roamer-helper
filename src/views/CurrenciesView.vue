@@ -30,11 +30,11 @@ const handle = async () => {
   const converter = new Converter()
   if (value1.value) {
     const value = await converter.convert(value1.value, currency1.value, currency2.value)
-    console.log(value) // converted value
+    // console.log(value)
     value2.value = value.toFixed(2)
   } else if (value2.value) {
     const value = await converter.convert(value2.value, currency2.value, currency1.value)
-    console.log(value) // converted value
+    // console.log(value)
     value1.value = value.toFixed(2)
   }
 }
@@ -54,14 +54,14 @@ onMounted(async () => {
   }
   currencyArray.value.sort()
 
-  console.log(currencyArray.value)
+  // console.log(currencyArray.value)
 
   for (let i = 0; i < currencyArray.value.length; i++) {
     const value = await converter.convert(1, currency1.value, currencyArray.value[i])
 
     currencyValue.value.push({ [currencyArray.value[i]]: value })
   }
-  console.log(currencyValue.value)
+  // console.log(currencyValue.value)
 })
 
 const inputRefresh = (num) => {
@@ -96,6 +96,7 @@ const inputRefresh = (num) => {
                   v-model="value1"
                   @keyup.enter="handle"
                   @input="inputRefresh(1)"
+                  @blur="handle"
                 />
                 <p v-if="GlobalStore.country1.value">
                   {{ GlobalStore.country1.value.currency.symbol }}
@@ -115,6 +116,7 @@ const inputRefresh = (num) => {
                   v-model="value2"
                   @keyup.enter="handle"
                   @input="inputRefresh(2)"
+                  @blur="handle"
                 />
                 <p v-if="GlobalStore.country2.value">
                   {{ GlobalStore.country2.value.currency.symbol }}
@@ -193,6 +195,7 @@ form > div > div {
   margin-top: 10px;
   padding: 0 20px;
   flex-wrap: wrap;
+  overflow: scroll;
 
   height: 78%;
   width: 100%;
@@ -241,6 +244,21 @@ span {
 @media (max-width: 600px) {
   .rateZone {
     width: 90%;
+  }
+}
+@media (max-width: 430px) {
+  .rateZone > div {
+    padding: 0;
+  }
+  .inputZone > input {
+    /* border: solid 1px blue; */
+    width: 220px;
+  }
+  h3 {
+    font-size: 20px;
+  }
+  h3 span {
+    font-size: 18px;
   }
 }
 </style>
