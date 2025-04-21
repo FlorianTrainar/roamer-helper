@@ -7,6 +7,13 @@ export const countries = [
     citiesTime: [{ Canberra: 10 }, { 'Alice Spring': 9 }, { Perth: 8 }],
   },
   {
+    country: 'Belgium',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237041/bel_woybtp.svg',
+    langage: [{ French: 'fr' }, { German: 'de' }, { Dutch: 'nl' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Brussel: 2 }],
+  },
+  {
     country: 'Canada',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744974496/can_ruqeje.svg',
     langage: [{ English: 'en' }, { French: 'fr' }],
@@ -20,6 +27,13 @@ export const countries = [
 
     currency: { name: 'Chinese Yuan Renminbi ', code: 'CNY', symbol: '¥' },
     citiesTime: [{ Beijing: 8 }],
+  },
+  {
+    country: 'Finland',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237040/fin_stmgsf.svg',
+    langage: [{ Finnish: 'fi' }, { Swedish: 'sv' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Helsinki: +3 }],
   },
 
   {
@@ -37,6 +51,34 @@ export const countries = [
     citiesTime: [{ Berlin: 2 }],
   },
   {
+    country: 'Greenland',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237040/grl_kuh1jg.svg',
+    langage: [{ Greenlandic: 'is' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Nuuk: -1 }, { Danmarkshavn: 0 }],
+  },
+  {
+    country: 'Iceland',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237040/isl_fwg5r7.svg',
+    langage: [{ Icelandic: 'is' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Reykjavik: 0 }],
+  },
+  {
+    country: 'India',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237040/ind_ytruvv.svg',
+    langage: [{ Hindi: 'hi' }],
+    currency: { name: 'Indian Rupee', code: 'INR', symbol: '₹' },
+    citiesTime: [{ 'New Delhi': +6 }],
+  },
+  {
+    country: 'Italia',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237040/ita_b03fi5.svg',
+    langage: [{ Italian: 'it' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Rome: +2 }],
+  },
+  {
     country: 'Japan',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/jpn_ygejkb.svg',
     langage: [{ Japanese: 'ja' }],
@@ -44,25 +86,74 @@ export const countries = [
     citiesTime: [{ Tokyo: 9 }],
   },
   {
-    country: 'South Korea',
-    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744786589/kor_t40m8i.svg',
-    langage: [{ Korean: 'ko' }],
-    currency: { name: 'South Korean Won', code: 'KRW', symbol: '₩' },
-    citiesTime: [{ Seoul: 9 }],
+    country: 'Norway',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/nor_au16wz.svg',
+    langage: [{ Norwegian: 'no' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Oslo: +2 }],
   },
+
   {
     country: 'Portugal',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744620723/prt_x28xf6.svg',
     langage: [{ Portuguese: 'pt' }],
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
-    citiesTime: [{ Lisbon: 1 }],
+    citiesTime: [{ Lisbon: +1 }],
   },
   {
     country: 'Russia',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744724504/rus_wucgmh.svg',
     langage: [{ Russian: 'ru' }],
     currency: { name: 'Russian Ruble', code: 'RUB', symbol: '₽' },
-    citiesTime: [{ Moscow: +3 }, { Novosibirsk: +7 }],
+    citiesTime: [
+      { Moscow: +3 },
+      { Samara: +4 },
+      { Yekaterinburg: +5 },
+      { Omsk: +6 },
+      { Novosibirsk: +7 },
+      { Irkutsk: +8 },
+      { Yakutsk: +9 },
+      { Verkhoyansk: +10 },
+      { Magadan: +11 },
+      { Anadyr: +12 },
+    ],
+  },
+  {
+    country: 'Spain',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/esp_vx49rj.svg',
+    langage: [{ Spanish: 'es' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Madrid: +2 }],
+  },
+  {
+    country: 'South Korea',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744786589/kor_t40m8i.svg',
+    langage: [{ Korean: 'ko' }],
+    currency: { name: 'South Korean Won', code: 'KRW', symbol: '₩' },
+    citiesTime: [{ Seoul: +9 }],
+  },
+
+  {
+    country: 'Sweden',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/swe_cwyx31.svg',
+    langage: [{ Swedish: 'sv' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Stockholm: +2 }],
+  },
+  {
+    country: 'Thailand',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/tha_d0ehjy.svg',
+    langage: [{ Thai: 'th' }],
+    currency: { name: 'Baht', code: 'THB', symbol: '฿' },
+    citiesTime: [{ Bangkok: +7 }],
+  },
+
+  {
+    country: 'Turkey',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/tur_hkqobm.svg',
+    langage: [{ Turkish: 'tr' }],
+    currency: { name: 'Euro', code: 'EUR', symbol: '€' },
+    citiesTime: [{ Ankara: +3 }],
   },
   {
     country: 'U.S.A',
@@ -85,5 +176,12 @@ export const countries = [
     code: 'en',
     currency: { name: 'British Pound Sterling', code: 'GBP', symbol: '£' },
     citiesTime: [{ London: 1 }],
+  },
+  {
+    country: 'Vietnam',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237038/vnm_efynye.svg',
+    langage: [{ Vietnamese: 'vi' }],
+    currency: { name: 'Dong', code: 'VND', symbol: '₫' },
+    citiesTime: [{ Hanoi: +7 }],
   },
 ]

@@ -218,7 +218,8 @@ section > div {
   border-radius: 20px;
   box-shadow: 0 0 5px black;
   width: 450px;
-  height: 340px;
+  height: 355px;
+  overflow: scroll;
   margin-bottom: 40px;
 }
 .timeZone {
@@ -309,7 +310,7 @@ button {
     width: 90%;
     padding: 15px;
     height: 240px;
-    overflow: scroll;
+
     margin-bottom: 20px;
   }
   p {

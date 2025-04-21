@@ -249,7 +249,9 @@ span {
 @media (max-width: 430px) {
   .rateZone > div {
     padding: 0;
+    font-size: 17px;
   }
+
   .inputZone > input {
     /* border: solid 1px blue; */
     width: 220px;
