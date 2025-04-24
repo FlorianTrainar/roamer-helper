@@ -1,10 +1,24 @@
 export const countries = [
   {
+    country: 'Algeria',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499554/alg_kkifqe.png',
+    langage: [{ Arabic: 'ar' }],
+    currency: { name: 'Australian Dollar', code: 'AUD', symbol: '$' },
+    citiesTime: [{ Algiers: 1 }],
+  },
+  {
     country: 'Australia',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744728464/aus_mszlkx.svg',
     langage: [{ English: 'en' }],
-    currency: { name: 'Australian Dollar', code: 'AUD', symbol: '$' },
+    currency: { name: 'Algerian Dinar', code: 'DZD', symbol: 'DA' },
     citiesTime: [{ Canberra: 10 }, { 'Alice Spring': 9 }, { Perth: 8 }],
+  },
+  {
+    country: 'Brasil',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499554/bra_tzjpa9.svg',
+    langage: [{ Portuguese: 'pt' }],
+    currency: { name: 'Brazillian real', code: 'BRL', symbol: 'R$' },
+    citiesTime: [{ Brasila: -3 }, { Manaus: -4 }],
   },
   {
     country: 'Belgium',
@@ -24,9 +38,15 @@ export const countries = [
     country: 'China',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744728464/chn_p26hi1.svg',
     langage: [{ 'Simplified Chinese': 'zh' }],
-
     currency: { name: 'Chinese Yuan Renminbi ', code: 'CNY', symbol: '¥' },
     citiesTime: [{ Beijing: 8 }],
+  },
+  {
+    country: 'Congo Dem. Rep.',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499554/cog_rw2ddu.svg',
+    langage: [{ French: 'fr' }, { Swahili: 'sw' }],
+    currency: { name: 'Congolese franc', code: 'CDF', symbol: 'FC' },
+    citiesTime: [{ Kinshasa: +1 }],
   },
   {
     country: 'Finland',
@@ -86,6 +106,20 @@ export const countries = [
     citiesTime: [{ Tokyo: 9 }],
   },
   {
+    country: 'Mexico',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499554/mex_tmbvfs.svg',
+    langage: [{ Spanish: 'es' }],
+    currency: { name: 'Mexican Peso', code: 'MXN', symbol: '$' },
+    citiesTime: [{ 'Mexico City': -6 }, { Hermosillo: -7 }],
+  },
+  {
+    country: 'New Zealand',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499553/nzl_mstiy5.svg',
+    langage: [{ English: 'en' }, { Maori: 'mi' }],
+    currency: { name: 'New Zealand Dollar', code: 'NZD', symbol: '$' },
+    citiesTime: [{ Wellington: +12 }],
+  },
+  {
     country: 'Norway',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745237039/nor_au16wz.svg',
     langage: [{ Norwegian: 'no' }],
@@ -124,6 +158,13 @@ export const countries = [
     langage: [{ Spanish: 'es' }],
     currency: { name: 'Euro', code: 'EUR', symbol: '€' },
     citiesTime: [{ Madrid: +2 }],
+  },
+  {
+    country: 'South Africa',
+    flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499553/saf_xcjo7k.png',
+    langage: [{ English: 'en' }, { Afrikaans: 'af' }],
+    currency: { name: 'South African rand', code: 'ZAR', symbol: 'R' },
+    citiesTime: [{ 'Cape Town': +2 }],
   },
   {
     country: 'South Korea',

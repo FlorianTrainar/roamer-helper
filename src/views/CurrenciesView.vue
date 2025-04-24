@@ -183,7 +183,7 @@ form > div > div {
   box-shadow: 0 0 3px black;
   border: solid 1px black;
   border-radius: 20px;
-  width: 600px;
+  width: 750px;
   height: 300px;
   padding: 10px;
 }
@@ -239,6 +239,9 @@ span {
   }
   .rateZone {
     width: 500px;
+  }
+  .rateZone p {
+    font-size: 15px;
   }
 }
 @media (max-width: 600px) {
