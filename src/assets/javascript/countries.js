@@ -3,14 +3,14 @@ export const countries = [
     country: 'Algeria',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1745499554/alg_kkifqe.png',
     langage: [{ Arabic: 'ar' }],
-    currency: { name: 'Australian Dollar', code: 'AUD', symbol: '$' },
+    currency: { name: 'Algerian Dinar', code: 'DZD', symbol: 'DA' },
     citiesTime: [{ Algiers: 1 }],
   },
   {
     country: 'Australia',
     flag: 'https://res.cloudinary.com/dnq2ftd45/image/upload/v1744728464/aus_mszlkx.svg',
     langage: [{ English: 'en' }],
-    currency: { name: 'Algerian Dinar', code: 'DZD', symbol: 'DA' },
+    currency: { name: 'Australian Dollar', code: 'AUD', symbol: '$' },
     citiesTime: [{ Canberra: 10 }, { 'Alice Spring': 9 }, { Perth: 8 }],
   },
   {
