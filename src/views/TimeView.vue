@@ -1,10 +1,24 @@
 <script setup>
-import { inject, ref, computed } from 'vue'
+import { inject, ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import translate from 'translate'
 
 const Router = useRouter()
 
 const GlobalStore = inject('GlobalStore')
+
+const timeZonesText = ref('Time Zones')
+onMounted(async () => {
+  if (GlobalStore.country1.value.langage[0] && GlobalStore.country1.value.langage[0] !== 'en')
+    try {
+      timeZonesText.value = await translate(timeZonesText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+    } catch (error) {
+      console.log(error)
+    }
+})
 
 const displaySwitched = ref(false)
 
@@ -111,7 +125,7 @@ const switchDisplay = (boolean) => {
   <main>
     <div class="wrapper">
       <div class="content">
-        <h1>Time Zone</h1>
+        <h1>{{ timeZonesText }}</h1>
         <section>
           <div v-if="GlobalStore.country1.value.citiesTime">
             <div

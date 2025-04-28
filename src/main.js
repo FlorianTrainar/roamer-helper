@@ -34,7 +34,12 @@ app.use(VueCookies)
 const country1 = ref($cookies.get('country1')) || ref('')
 const country2 = ref($cookies.get('country2')) || ref('')
 
+// --
+
 // Création du 'provider'
-app.provide('GlobalStore', { country1: country1, country2: country2 })
+app.provide('GlobalStore', {
+  country1: country1,
+  country2: country2,
+})
 
 app.mount('#app')

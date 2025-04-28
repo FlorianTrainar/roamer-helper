@@ -1,10 +1,24 @@
 <script setup>
 import { ref, inject, onMounted } from 'vue'
 import { Converter } from 'easy-currencies'
+import translate from 'translate'
 
 import { countries } from '@/assets/javascript/countries'
 
 const GlobalStore = inject('GlobalStore')
+
+const currenciesText = ref('Currencies')
+onMounted(async () => {
+  if (GlobalStore.country1.value.langage[0] && GlobalStore.country1.value.langage[0] !== 'en')
+    try {
+      currenciesText.value = await translate(currenciesText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+    } catch (error) {
+      console.log(error)
+    }
+})
 
 const value1 = ref(null)
 const value2 = ref(null)
@@ -79,7 +93,7 @@ const inputRefresh = (num) => {
   <main>
     <div class="wrapper">
       <section class="content">
-        <h1>Currencies</h1>
+        <h1>{{ currenciesText }}</h1>
 
         <form @submit.prevent="handleSubmit">
           <div>
@@ -126,7 +140,11 @@ const inputRefresh = (num) => {
           </div>
         </form>
         <section class="rateZone">
-          <h3>{{ GlobalStore.country1.value.currency.name }} rates</h3>
+          <h3>
+            {{ GlobalStore.country1.value.currency.name }} ({{
+              GlobalStore.country1.value.currency.code
+            }})
+          </h3>
           <div>
             <p
               v-for="(rate, i) in currencyValue"

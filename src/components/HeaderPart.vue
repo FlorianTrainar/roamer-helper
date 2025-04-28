@@ -1,12 +1,54 @@
 <script setup>
-import { ref, inject, onBeforeMount } from 'vue'
+import { ref, inject, provide, onMounted } from 'vue'
 import { countries } from '@/assets/javascript/countries'
-import { RouterView, RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import MenuPart from './MenuPart.vue'
+
+import translate from 'translate'
 
 const router = useRouter()
 
 const GlobalStore = inject('GlobalStore')
+
+const homeText = ref('Main menu')
+const welcomeText = ref('Welcome to')
+const translateText = ref('Translator')
+const currenciesText = ref('Currencies')
+const timeZoneText = ref('Time Zones')
+onMounted(async () => {
+  if (GlobalStore.country1.value.langage[0] && GlobalStore.country1.value.langage[0] !== 'en')
+    try {
+      homeText.value = await translate(homeText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+      welcomeText.value = await translate(welcomeText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+      translateText.value = await translate(translateText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+      currenciesText.value = await translate(currenciesText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+      timeZoneText.value = await translate(timeZoneText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+    } catch (error) {
+      console.log(error)
+    }
+})
+provide('Store', {
+  homeText: homeText,
+  welcomeText: welcomeText,
+  currenciesText: currenciesText,
+  translateText: translateText,
+  timeZoneText: timeZoneText,
+})
 
 const country1 = ref('')
 const country2 = ref('')

@@ -1,13 +1,24 @@
 <script setup>
-import { ref, inject } from 'vue'
+import { ref, inject, onMounted } from 'vue'
 import translate from 'translate'
 import { useRouter } from 'vue-router'
-
-import { countries } from '@/assets/javascript/countries'
 
 const router = useRouter()
 
 const GlobalStore = inject('GlobalStore')
+
+const translateText = ref('Translator')
+onMounted(async () => {
+  if (GlobalStore.country1.value.langage[0] && GlobalStore.country1.value.langage[0] !== 'en')
+    try {
+      translateText.value = await translate(translateText.value, {
+        from: 'en',
+        to: String(Object.values(GlobalStore.country1.value.langage[0])),
+      })
+    } catch (error) {
+      console.log(error)
+    }
+})
 
 const langage1 = ref('')
 const langage1Selected = ref(0)
@@ -75,7 +86,7 @@ const inputRefresh = (num) => {
   <main>
     <div class="wrapper">
       <section class="content">
-        <h1>Translator</h1>
+        <h1>{{ translateText }}</h1>
 
         <form @submit.prevent="translate">
           <div>

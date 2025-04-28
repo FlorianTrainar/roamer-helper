@@ -1,19 +1,21 @@
 <script setup>
 import { RouterLink } from 'vue-router'
+import { inject } from 'vue'
+const Store = inject('Store')
 </script>
 <template>
   <div class="appSelect">
     <RouterLink id="homeLink" :to="{ name: 'home' }" @click="$emit('display', false)"
-      >Home <font-awesome-icon :icon="['fas', 'home']"
+      >{{ Store.homeText.value }} <font-awesome-icon :icon="['fas', 'home']"
     /></RouterLink>
     <RouterLink :to="{ name: 'translate' }" @click="$emit('display', false)"
-      >Translate <font-awesome-icon :icon="['fas', 'book']"
+      >{{ Store.translateText.value }} <font-awesome-icon :icon="['fas', 'book']"
     /></RouterLink>
     <RouterLink :to="{ name: 'currencies' }" @click="$emit('display', false)"
-      >Currencies <font-awesome-icon :icon="['fas', 'coins']"
+      >{{ Store.currenciesText.value }} <font-awesome-icon :icon="['fas', 'coins']"
     /></RouterLink>
     <RouterLink :to="{ name: 'time' }" @click="$emit('display', false)"
-      >Time Zone <font-awesome-icon :icon="['fas', 'clock']"
+      >{{ Store.timeZoneText.value }} <font-awesome-icon :icon="['fas', 'clock']"
     /></RouterLink>
   </div>
 </template>
@@ -31,7 +33,7 @@ div {
   right: 42px;
   z-index: 5;
   padding: 20px 10px;
-  width: 200px;
+  /* width: 200px; */
 }
 .appSelect a {
   font-size: 26px;
@@ -39,6 +41,7 @@ div {
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 .appSelect a:hover {
   background: var(--orange-gradient-);
